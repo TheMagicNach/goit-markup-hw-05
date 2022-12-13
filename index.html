@@ -45,7 +45,7 @@
 			<section class="hero">
 				<div class="overlay">
 					<h1 class="hero-title">Effective Solutions for Your Business</h1>
-					<button type="button" class="hero-button">Order Service</button>
+					<button type="button" class="hero-button" data-modal-open>Order Service</button>
 				</div>
 			</section>
 			<!-- second section  -->
@@ -194,6 +194,17 @@
 				</div>
 			</section>
 		</main>
+
+		<!-- modal -->
+		<div class="backdrop is-hidden" data-modal>
+			<div class="modal">
+				
+				<button class="modal-button" data-modal-close>
+					x
+				</button>
+			</div>
+		</div>
+
 		<!-- footer -->
 		<footer class="footer">
 			<div class="container">
@@ -215,6 +226,8 @@
 					</div>	
 				</div>
 			</div>
+
+			<script src="./js/modal.js"></script>
 		</footer>
 	</body>
 </html>
