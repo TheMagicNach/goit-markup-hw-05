@@ -6,6 +6,7 @@
     --primary-bg-color: #ffffff;
     --accent-color:#4D5AE5;
     --primary-white-color:#ffffff;
+    --timing-function:cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* global */
@@ -84,6 +85,8 @@ img{
     margin-right:40px;
 }
 .nav{
+    position: relative;
+
     display: block;
     padding-top: 24px;
     padding-bottom: 24px;
@@ -94,11 +97,30 @@ img{
     font-size: 16px;
     line-height: 1.5;
  
+    transition:color 250ms var(--timing-function);
+
+}
+
+.current{
+    color: var(--accent-color);
+}
+.main-nav .current::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+   
+    border-radius: 2px;
+    
+    background: var(--accent-color);
 }
 
 nav:hover,
 nav:focus{
  color:var(--desc-text-color);
+ 
 } 
 
 .nav:active{
@@ -115,14 +137,17 @@ margin-left: auto;
 
 .info{
     color: var(--desc-text-color);
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+
+    transition:color 250ms var(--timing-function);
 }
 
 .info:hover,
 .info:focus{
     color:var(--accent-color);
+    
 }
 .footer{
     background-color:var(--primary-text-color);
@@ -187,6 +212,7 @@ margin-left: auto;
 
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
+    transition:background-color 250ms var(--timing-function);
 }
 .footer-social .social-href:hover,
 .footer-social .social-href:focus{
@@ -256,11 +282,15 @@ margin-left: auto;
         font-family: inherit;
         padding: 16px 32px;
         border-radius: 4px;
-        border: 0;
+        border: 1px solid rgb(0 0 0 / 0);
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
         display: inline-block;
         text-align: center;
+        transition:
+                background-color 250ms var(--timing-function),
+                color 250ms var(--timing-function),
+                box-shadow 250ms var(--timing-function);
 }
 
 .hero .hero-button:hover,
@@ -416,6 +446,7 @@ border-radius: 0px 0px 4px 4px;
     border-radius: 50%;
     background-color: #4D5AE5;
     
+    transition:background-color 250ms var(--timing-function);
 }
 .social .social-href:hover,
 .social .social-href:focus{
@@ -458,6 +489,9 @@ border-radius: 0px 0px 4px 4px;
     border: 1px solid #8E8F99;
     border-radius: 4px;
 
+    transition:
+        fill 250ms var(--timing-function),
+        border 250ms var(--timing-function);
 }
 .customers-href:hover,
 .customers-href:focus{
@@ -487,15 +521,21 @@ border-radius: 0px 0px 4px 4px;
     height: 100%;
 
     background: rgba(46, 47, 66, 0.4);
+    
+    transition: opacity 250ms var(--timing-function), visibility 250ms var(--timing-function);
+    
 }
+   
 
 .backdrop.is-hidden{
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
+    
 }
 
 .modal{
-    position: absolute;
+    position: absolute; 
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -503,12 +543,23 @@ border-radius: 0px 0px 4px 4px;
     min-height:500px ;
     min-width: 400px;
 
-    background-color: #fff;
+    background-color: #FCFCFC;
     border-radius: 4px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 250ms var(--timing-function) , visibility 250ms var(--timing-function);
 }
 
 .modal .modal-button{
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 24px;
+    margin-right: 24px ;
 
     background: #E7E9FC;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -518,9 +569,20 @@ border-radius: 0px 0px 4px 4px;
     height: 24px;
     cursor: pointer;
     
+    transition:
+            box-shadow 250ms var(--timing-function),
+            border 250ms var(--timing-function);
 }
+.modal .modal-button:hover,
+.modal .modal-button:focus{
 
-
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+    border: 1px solid rgb(0 0 0 / 0);
+}
+.left{
+    display: flex;
+    flex-direction: row-reverse;
+}
 /* Portfolio CSS */
 .portfolio{
     padding-top: 96px;
@@ -553,6 +615,12 @@ border-radius: 0px 0px 4px 4px;
         padding: 12px 24px;  
         display: inline-block;
         text-align: center;
+
+        transition:
+        background-color 250ms var(--timing-function),
+        color 250ms var(--timing-function),
+        box-shadow 250ms var(--timing-function),
+        border 250ms var(--timing-function) ;
 }
 .filter .item + .item{
     margin-left: 24px;
@@ -562,9 +630,11 @@ border-radius: 0px 0px 4px 4px;
 .filter .filter-button:focus{
     background-color: var(--accent-color);
     color:#F4F4FD;
-    cursor: pointer;
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
-    border: 0;
+    border: 1px solid rgb(0 0 0 / 0);
+
+
+
 }
 
 .border-img{
@@ -593,10 +663,21 @@ border-radius: 0px 0px 4px 4px;
     display: block;
 
 }
+.card-menu .card-href{
+    display: bloсk;
+    transition:box-shadow 250ms var(--timing-function);
+}
+
+
 .card-menu .card-href:hover,
 .card-menu .card-href:focus{
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+ 
 }
+
+
+
+
 /* .portfolio-desc{outline: 1px solid tomato;}
 .portfolio-img{outline: 1px solid tomato;}
 .portfolio-title{outline: 1px solid tomato;} */
@@ -631,6 +712,43 @@ border-radius: 0px 0px 4px 4px;
     height: auto;
     display: block;
 }
+/* overlay-card */
+
+.overlay-card {
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.overlay-card .text-thumb{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+
+    background-color: rgb(77, 90, 229);
+
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    
+    
+    color: #F4F4FD;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+
+    padding:40px 32px;
+
+}
+.card-href:focus .text-thumb,
+.card-href:hover .text-thumb {
+    transform: translateY(0%);
+    
+}
+
 
 /* conteiner and section */
 
